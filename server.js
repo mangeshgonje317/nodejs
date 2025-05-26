@@ -6,6 +6,7 @@ import menueRoutes from './routes/menueroutes.js'
 import dotenv from 'dotenv'
  dotenv.config();
 const PORT = process.env.PORT || 3000;
+import serverless from 'serverless-http'
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.get("/", (req, res) => {
 app.use('/person',personeRouter);
 app.use('/' , menueRoutes);
 
-app.listen(PORT, () => {
-  console.log("Listening  on port 3000");
-});
+// app.listen(PORT, () => {
+//   console.log("Listening  on port 3000");
+// });
+
+export const handler = serverless(app);
